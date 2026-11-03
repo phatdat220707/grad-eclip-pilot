@@ -1,0 +1,48 @@
+{
+  "source_repo": "https://github.com/Cyang-Zhao/Grad-Eclip",
+  "source_commit": "e370e6cb194faf2020f5d1ed268f9d57e91a38e6",
+  "source_notebook": "grad_eclip_image.ipynb",
+  "clip_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+  "method_code": "official notebook cells 4 and 9; x.half() changed to model dtype for CPU",
+  "model": "OpenAI CLIP ViT-B/16",
+  "device": "cpu",
+  "image": "dog_and_car.png",
+  "image_sha256": "8dd334085cabbd20bc5df8e3912118c29aefe6d01ad92a1e47ed9e130e229e3f",
+  "torch": "2.15.0+cpu",
+  "torchvision": "0.29.2+cpu",
+  "numpy": "2.5.4",
+  "map_size": [
+    14,
+    14
+  ],
+  "results": [
+    {
+      "prompt": "dog",
+      "original_cosine": 0.2681131362915039,
+      "single_head_cosine": 0.20764273405075073,
+      "multi_head_control_cosine": 0.2681131064891815,
+      "multi_head_vs_original_difference": -2.9802322387695312e-08,
+      "score_difference": -0.060470402240753174,
+      "heatmap_min": 0.0,
+      "heatmap_max": 0.08721380680799484,
+      "heatmap_nonzero_patches": 87,
+      "heatmap_patches": 196,
+      "heatmap_file": "dog_heatmap.png",
+      "heatmap_raw_file": "dog_heatmap_raw.npy"
+    },
+    {
+      "prompt": "car",
+      "original_cosine": 0.23793062567710876,
+      "single_head_cosine": 0.2172652631998062,
+      "multi_head_control_cosine": 0.23793062567710876,
+      "multi_head_vs_original_difference": 0.0,
+      "score_difference": -0.02066536247730255,
+      "heatmap_min": 0.0,
+      "heatmap_max": 0.040158264338970184,
+      "heatmap_nonzero_patches": 155,
+      "heatmap_patches": 196,
+      "heatmap_file": "car_heatmap.png",
+      "heatmap_raw_file": "car_heatmap_raw.npy"
+    }
+  ]
+}
