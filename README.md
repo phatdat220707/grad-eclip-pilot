@@ -1,5 +1,17 @@
 # Grad-ECLIP minimal visual baseline
 
+## Latest research update — 25 November 2026
+
+New work includes an eight-image COCO pilot, original OpenVision Tiny/16-224 forward/backward feasibility, a preliminary **unsuccessful** pooling-aware adaptation candidate, and gradient baseline controls. This is exploratory research, not a completed Grad-ECLIP adaptation or paper benchmark reproduction.
+
+- [Progress report](experiments/2026-11-25/progress-report.txt)
+- [Experiment guide and reproduction instructions](experiments/2026-11-25/README.md)
+- [COCO image/caption comparison](experiments/2026-11-25/coco-pilot/comparison.png)
+- [Candidate negative result](experiments/2026-11-25/openvision-adapter-pilot/interpretation.txt)
+- [Gradient baseline diagnostic](experiments/2026-11-25/openvision-gradient-baselines/interpretation.txt)
+
+The original one-image baseline below remains available as the initial checkpoint.
+
 A small, reproducible pilot using the [authors' Grad-ECLIP repository](https://github.com/Cyang-Zhao/Grad-Eclip) and [OpenAI CLIP](https://github.com/openai/CLIP). It generates visual explanations for the official `dog_and_car.png` example with the prompts `dog` and `car`, and compares original multi-head CLIP scores with the single-head forward used for visualization.
 
 ![Input image and visual explanations](results/2026-11-03/comparison.png)

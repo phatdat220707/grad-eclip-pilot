@@ -1,0 +1,13 @@
+{
+  "candidate": "pooling-aware multi-query multi-head Grad-ECLIP-inspired variant",
+  "formula": "H_j=ReLU(sum_h,i,c grad(score,z_hic)*lambda_hij*v_hjc), j patch tokens; lambda=minmax cosine(q_hi,k_hj) over patch keys j per query/head",
+  "differences_from_official": "all receiving queries, original 3 heads; channel gradient through downstream pooling/MLP; ReLU after query/head aggregation; epsilon clamp for constant QK rows; not validated as equivalent to paper",
+  "controls": [
+    "ordinary softmax contribution",
+    "lambda=1 ablation",
+    "random seeds 0,1,2"
+  ],
+  "evaluation": "original OpenVision cosine; 11 rounded patch counts spanning 0..196; zero after model normalization (ImageNet mean RGB); trapezoidal raw cosine AUC",
+  "selection": "first 8 entries in downloaded Karpathy validation annotation order; first caption per entry; no result-based selection",
+  "finite_difference": "scale last-block pre-output-projection attention context by 1+-0.001; compare central score difference to sum(grad_z*z)"
+}

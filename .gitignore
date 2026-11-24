@@ -6,3 +6,13 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .DS_Store
+probe-deps/
+probe-cache/
+openvision-tiny/
+openvision-source/
+*.bin
+# COCO source data is downloaded by the pilot, not redistributed in git.
+experiments/2026-11-25/coco-pilot/COCO_*.jpg
+experiments/2026-11-25/coco-pilot/coco_karpathy_val.json
+*_partial.json
+partial.json

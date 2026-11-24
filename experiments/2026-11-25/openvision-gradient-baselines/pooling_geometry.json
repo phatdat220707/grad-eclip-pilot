@@ -1,0 +1,50 @@
+[
+  {
+    "image_id": 184613,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 7.941796779632568
+  },
+  {
+    "image_id": 403013,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 7.761782169342041
+  },
+  {
+    "image_id": 562150,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 7.687169551849365
+  },
+  {
+    "image_id": 360772,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 4.421024322509766
+  },
+  {
+    "image_id": 340559,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 6.410027503967285
+  },
+  {
+    "image_id": 321107,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 5.63065767288208
+  },
+  {
+    "image_id": 129001,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 5.931083679199219
+  },
+  {
+    "image_id": 556616,
+    "class_token_gradient_l1": 0.0,
+    "max_patch_gradient_difference": 0.0,
+    "patch_gradient_l1": 7.861712455749512
+  }
+]

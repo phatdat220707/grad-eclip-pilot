@@ -1,0 +1,336 @@
+{
+  "manifest": "manifest.json",
+  "openvision_cosine_matrix": [
+    [
+      0.24157452583312988,
+      0.10811427980661392,
+      0.15339815616607666,
+      0.12404792010784149,
+      0.13688543438911438,
+      0.16034099459648132,
+      0.12064006179571152,
+      0.13006837666034698
+    ],
+    [
+      0.10258796066045761,
+      0.21604374051094055,
+      0.09567710757255554,
+      0.18603099882602692,
+      0.18433961272239685,
+      0.11779384315013885,
+      0.1819276362657547,
+      0.13090550899505615
+    ],
+    [
+      0.19838546216487885,
+      0.13733042776584625,
+      0.26014578342437744,
+      0.16913694143295288,
+      0.16067659854888916,
+      0.1966262310743332,
+      0.1731528490781784,
+      0.1366126537322998
+    ],
+    [
+      0.09544568508863449,
+      0.15689951181411743,
+      0.13012662529945374,
+      0.23591026663780212,
+      0.21421411633491516,
+      0.11426419019699097,
+      0.22718217968940735,
+      0.10471955686807632
+    ],
+    [
+      0.11085376143455505,
+      0.24501323699951172,
+      0.10095978528261185,
+      0.19612060487270355,
+      0.23261500895023346,
+      0.13251060247421265,
+      0.19075621664524078,
+      0.16347333788871765
+    ],
+    [
+      0.1714402288198471,
+      0.14527805149555206,
+      0.15756040811538696,
+      0.14637348055839539,
+      0.1589004546403885,
+      0.2514561414718628,
+      0.15154673159122467,
+      0.17590470612049103
+    ],
+    [
+      0.09717676788568497,
+      0.1657194048166275,
+      0.11348572373390198,
+      0.21228069067001343,
+      0.21168243885040283,
+      0.10303626954555511,
+      0.21780312061309814,
+      0.10248111188411713
+    ],
+    [
+      0.15527823567390442,
+      0.1670922189950943,
+      0.16373679041862488,
+      0.16468654572963715,
+      0.16627195477485657,
+      0.19878889620304108,
+      0.1488572657108307,
+      0.24213238060474396
+    ]
+  ],
+  "captions": [
+    "A child holding a flowered umbrella and petting a yak.",
+    "A narrow kitchen filled with appliances and cooking utensils.",
+    "A little girl holding a kitten next to a blue fence.",
+    "A toilet sitting in a bathroom next to a sink.",
+    "There are two sinks next to two mirrors.",
+    "A woman rides a bicycle on a road next to the median.",
+    "A bath tub sitting next to a sink in a bathroom.",
+    "A row of parked cars sitting next to parking meters."
+  ],
+  "clip_cosine_matrix": [
+    [
+      0.34717994928359985,
+      0.18325211107730865,
+      0.1762547641992569,
+      0.13432903587818146,
+      0.12131048738956451,
+      0.21223275363445282,
+      0.130876824259758,
+      0.11328324675559998
+    ],
+    [
+      0.08602868020534515,
+      0.33701980113983154,
+      0.06884729117155075,
+      0.2246384620666504,
+      0.21050404012203217,
+      0.1249723732471466,
+      0.20044520497322083,
+      0.13681083917617798
+    ],
+    [
+      0.24376000463962555,
+      0.15889720618724823,
+      0.34184056520462036,
+      0.16920487582683563,
+      0.15611456334590912,
+      0.1789683699607849,
+      0.16177578270435333,
+      0.10418838262557983
+    ],
+    [
+      0.0680820420384407,
+      0.19262021780014038,
+      0.11223154515028,
+      0.2757152020931244,
+      0.2216654121875763,
+      0.0983436107635498,
+      0.2614290416240692,
+      0.1133863776922226
+    ],
+    [
+      0.07645431905984879,
+      0.2878901958465576,
+      0.07510478794574738,
+      0.24052931368350983,
+      0.24690872430801392,
+      0.05329339951276779,
+      0.22625106573104858,
+      0.17238295078277588
+    ],
+    [
+      0.18673080205917358,
+      0.13090968132019043,
+      0.17590761184692383,
+      0.13844698667526245,
+      0.1357513666152954,
+      0.2935740053653717,
+      0.14034029841423035,
+      0.1941366046667099
+    ],
+    [
+      0.14531077444553375,
+      0.22255894541740417,
+      0.11651281267404556,
+      0.25306886434555054,
+      0.2437753826379776,
+      0.07350420951843262,
+      0.2597353160381317,
+      0.09285187721252441
+    ],
+    [
+      0.11881279200315475,
+      0.15012510120868683,
+      0.12666259706020355,
+      0.14161457121372223,
+      0.13312365114688873,
+      0.18738321959972382,
+      0.09742681682109833,
+      0.31132543087005615
+    ]
+  ],
+  "maps": [
+    {
+      "image_id": 184613,
+      "caption_index": 0,
+      "condition": "matched",
+      "original_cosine": 0.34717994928359985,
+      "single_head_cosine": 0.11325229704380035,
+      "nonzero": 170,
+      "file": "184613_matched.npy"
+    },
+    {
+      "image_id": 184613,
+      "caption_index": 1,
+      "condition": "source_mismatched",
+      "original_cosine": 0.18325211107730865,
+      "single_head_cosine": 0.22395071387290955,
+      "nonzero": 134,
+      "file": "184613_source_mismatched.npy"
+    },
+    {
+      "image_id": 403013,
+      "caption_index": 1,
+      "condition": "matched",
+      "original_cosine": 0.33701980113983154,
+      "single_head_cosine": 0.21558819711208344,
+      "nonzero": 163,
+      "file": "403013_matched.npy"
+    },
+    {
+      "image_id": 403013,
+      "caption_index": 2,
+      "condition": "source_mismatched",
+      "original_cosine": 0.06884729117155075,
+      "single_head_cosine": 0.13541939854621887,
+      "nonzero": 86,
+      "file": "403013_source_mismatched.npy"
+    },
+    {
+      "image_id": 562150,
+      "caption_index": 2,
+      "condition": "matched",
+      "original_cosine": 0.34184056520462036,
+      "single_head_cosine": 0.1533018797636032,
+      "nonzero": 186,
+      "file": "562150_matched.npy"
+    },
+    {
+      "image_id": 562150,
+      "caption_index": 3,
+      "condition": "source_mismatched",
+      "original_cosine": 0.16920487582683563,
+      "single_head_cosine": 0.17817379534244537,
+      "nonzero": 117,
+      "file": "562150_source_mismatched.npy"
+    },
+    {
+      "image_id": 360772,
+      "caption_index": 3,
+      "condition": "matched",
+      "original_cosine": 0.2757152020931244,
+      "single_head_cosine": 0.17691892385482788,
+      "nonzero": 180,
+      "file": "360772_matched.npy"
+    },
+    {
+      "image_id": 360772,
+      "caption_index": 4,
+      "condition": "source_mismatched",
+      "original_cosine": 0.2216654121875763,
+      "single_head_cosine": 0.18195399641990662,
+      "nonzero": 163,
+      "file": "360772_source_mismatched.npy"
+    },
+    {
+      "image_id": 340559,
+      "caption_index": 4,
+      "condition": "matched",
+      "original_cosine": 0.24690872430801392,
+      "single_head_cosine": 0.1970343291759491,
+      "nonzero": 161,
+      "file": "340559_matched.npy"
+    },
+    {
+      "image_id": 340559,
+      "caption_index": 5,
+      "condition": "source_mismatched",
+      "original_cosine": 0.05329339951276779,
+      "single_head_cosine": 0.16550453007221222,
+      "nonzero": 20,
+      "file": "340559_source_mismatched.npy"
+    },
+    {
+      "image_id": 321107,
+      "caption_index": 5,
+      "condition": "matched",
+      "original_cosine": 0.2935740053653717,
+      "single_head_cosine": 0.18694497644901276,
+      "nonzero": 138,
+      "file": "321107_matched.npy"
+    },
+    {
+      "image_id": 321107,
+      "caption_index": 6,
+      "condition": "source_mismatched",
+      "original_cosine": 0.14034029841423035,
+      "single_head_cosine": 0.17744162678718567,
+      "nonzero": 114,
+      "file": "321107_source_mismatched.npy"
+    },
+    {
+      "image_id": 129001,
+      "caption_index": 6,
+      "condition": "matched",
+      "original_cosine": 0.2597353160381317,
+      "single_head_cosine": 0.175205260515213,
+      "nonzero": 177,
+      "file": "129001_matched.npy"
+    },
+    {
+      "image_id": 129001,
+      "caption_index": 7,
+      "condition": "source_mismatched",
+      "original_cosine": 0.09285187721252441,
+      "single_head_cosine": 0.18733203411102295,
+      "nonzero": 78,
+      "file": "129001_source_mismatched.npy"
+    },
+    {
+      "image_id": 556616,
+      "caption_index": 7,
+      "condition": "matched",
+      "original_cosine": 0.31132543087005615,
+      "single_head_cosine": 0.17891022562980652,
+      "nonzero": 186,
+      "file": "556616_matched.npy"
+    },
+    {
+      "image_id": 556616,
+      "caption_index": 0,
+      "condition": "source_mismatched",
+      "original_cosine": 0.11881279200315475,
+      "single_head_cosine": 0.12766921520233154,
+      "nonzero": 132,
+      "file": "556616_source_mismatched.npy"
+    }
+  ],
+  "limitations": "8-image convenience subset; source-mismatched captions may be semantically compatible; maps are official CLIP single-head Grad-ECLIP, not OpenVision adaptation",
+  "clip_summary": {
+    "matched_cosine_mean": 0.3016623742878437,
+    "cyclic_mismatch_cosine_mean": 0.13103350717574358,
+    "matched_beats_cyclic_count": 8,
+    "image_to_text_top1_in_8": 7
+  },
+  "openvision_summary": {
+    "matched_cosine_mean": 0.23721012100577354,
+    "cyclic_mismatch_cosine_mean": 0.14111989084631205,
+    "matched_beats_cyclic_count": 8,
+    "image_to_text_top1_in_8": 7
+  }
+}

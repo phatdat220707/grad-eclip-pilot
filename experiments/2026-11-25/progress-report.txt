@@ -1,0 +1,67 @@
+RMS progress update — 25 November 2026
+For Prof. Antoni B. Chan and Chenyang Zhao
+This is the current consolidated update; it supersedes earlier draft progress reports.
+
+NEWEST DIAGNOSTIC: simple token baseline outperforms the adaptation candidate
+On the same eight COCO images, a final-token gradient-times-activation baseline gives mean deletion/insertion AUC 0.204239/0.241985 with mean replacement, and 0.204396/0.239217 with blur. Pooled random controls are 0.225499/0.228198 and 0.220905/0.224259 respectively. The prior candidate gives 0.227218/0.220368 and 0.227023/0.221088. Lower deletion/higher insertion are desired. Token baseline beats per-image random mean on 7/8 deletion and 8/8 insertion cases with each replacement. These descriptive results support keeping a simple baseline and reconsidering the direct attention/value extension, not claiming a successful adaptation.
+
+Additional geometry check: gradients at the final Transformer output class token are zero, while gradients at all final patch tokens are identical and nonzero in each of eight cases. This matches average pooling over patches: s=f(mean_j t_j) implies ds/dt_j=(1/N)ds/dp. It does not mean earlier class tokens have no influence. Detailed formulas, paired controls, caveats and raw evidence are in openvision-gradient-baselines/interpretation.txt, results.json and pooling_geometry.json. The newest diagnostic is not an official Grad-ECLIP method or a dataset benchmark.
+
+LATEST EXPERIMENT: pooling-aware adaptation candidate (preliminary negative result)
+An explicit multi-query, three-head Grad-ECLIP-inspired candidate now runs on the eight COCO images. It applies min-max cosine Q/K spatial weights per receiving query/head to value features, weighted by score gradients through the remaining average-pooling model. This is a proposed extension, not the original class-token Grad-ECLIP rule. Forward scores match the unmodified model within 2.98e-8; context directional derivatives agree with central finite differences to maximum absolute error 2.28e-5. Those checks validate instrumentation, not explanation quality.
+
+Under an eleven-level mean-replacement patch test, mean deletion/insertion cosine AUCs were 0.227218/0.220368 for the candidate, 0.225928/0.222015 for ordinary softmax contribution, 0.226576/0.223164 without spatial weighting, and 0.225499/0.228198 for three random orders pooled over images. Lower deletion and higher insertion are desired. The candidate is therefore worse than pooled random on both means, and beats per-image random mean on only 2/8 images for each metric. It should not be presented as a successful faithful adaptation. This is a useful negative finding motivating review of the pooling-specific derivation before scaling experiments. Details, limitations, formulas and raw evidence are in openvision-adapter-pilot/interpretation.txt, protocol.json and results.json.
+
+1. Work following Chenyang's guidance
+
+I established a minimal Grad-ECLIP baseline from the official notebook functions, conducted an initial OpenVision architecture/configuration review and feasibility probe, and have now run a small MS COCO image-caption pilot. The project remains at the baseline/feasibility stage; OpenVision Grad-ECLIP adaptation and paper-level quantitative reproduction are not completed.
+
+2. MS COCO pilot (new)
+
+Selection was fixed before model evaluation: first eight entries, in file order, from Salesforce's coco_karpathy_val.json; first caption of each entry. All five supplied captions are retained in the manifest. Image IDs: 184613, 403013, 562150, 360772, 340559, 321107, 129001, 556616. Images were downloaded from images.cocodataset.org. The HTTPS image endpoint failed hostname validation, so public HTTP URLs were used; downloaded file SHA256 hashes and annotation hash are recorded. This records local file identity, not independent authentication of the HTTP source.
+
+Models: OpenAI CLIP ViT-B/16 and original OpenVision ViT-Tiny/16-224, each with its own tokenizer and preprocessing. Both generated 8x8 normalized cosine score matrices using unmodified scoring forwards. A cyclic next-image caption was used as a source-mismatched comparison. It is not guaranteed to be semantically false; this subset includes related bathroom scenes.
+
+Model | Mean matched cosine | Mean cyclic comparison cosine | Matched > cyclic | Correct top-1 among eight captions
+CLIP ViT-B/16 | 0.301662 | 0.131034 | 8/8 | 7/8
+OpenVision Tiny/16-224 | 0.237210 | 0.141120 | 8/8 | 7/8
+
+These are descriptive checks on eight convenience-selected images, not COCO retrieval benchmark metrics. Absolute cosine values should not be used as a cross-model performance ranking. The two models differ in size, training and preprocessing.
+
+Failure case: both models ranked the kitchen caption above the source caption for image 340559, a scene with sinks and mirrors. CLIP cosine was 0.287890 for the kitchen caption vs 0.246909 for the source caption; OpenVision was 0.245013 vs 0.232615. This is a source-caption retrieval mismatch, not a proof that the selected caption is wholly semantically incompatible.
+
+Sixteen CLIP Grad-ECLIP maps were generated: one source-caption and one cyclic-comparison map per image. They use official notebook cells 4 and 9, final visual block, 224x224 input, 14x14 map, and the CPU dtype adjustment. Maps come from the single-head explanation forward; the reported score matrices use original multi-head CLIP. All 16 raw maps were checked finite. A comparison figure has been rendered and inspected. Qualitative inspection shows that source-mismatched captions can also generate prominent highlights; map appearance alone cannot establish faithfulness. Each displayed map is normalized separately.
+
+Artifacts: coco-pilot/manifest.json, results.json, retrieval_failures.json, sixteen .npy maps, comparison.png. Runner: coco_subset_pilot.py; figure/check script: coco_pilot_figure.py.
+
+3. OpenVision feasibility
+
+Provisional target is original UCSC-VLAA/openvision-vit-tiny-patch16-224, pinned model revision 7779317ba50238043f5d3ee0751fd95d7d13aa7e. Its 68,483,994-byte PyTorch weight file matches official SHA256 e10d0e7f610976ce3f94b819230630b3be0364e0320012ae7cf909be529b596c. All 300 tensor keys load strictly in OpenCLIP 4.2.2 with the supplied configuration and local tokenizer assets. The text branch is present. This verifies the converted checkpoint in this runtime, not native JAX/PyTorch equivalence.
+
+The candidate has visual depth 12, width 192, 16-pixel patches at 224 resolution, three heads and average pooling followed by LayerNorm. It retains a class token but pools patch tokens. Its tokenizer/context and ImageNet mean/std, squash/bilinear preprocessing differ from the CLIP baseline.
+
+On the dog/car image, image/text embeddings are 192-dimensional, input and final visual attention gradients are finite and nonzero, and passive hook score difference is 0. Explicit final-block Q/K/V tensors have shape [1,3,197,64]; preserving all heads reproduces cosine scores within 2.98e-8 in the tested pair.
+
+An experimental gradient-attention-value source-token map was also generated as an instrumentation check, using gradients through downstream average pooling. This is not yet a Grad-ECLIP adaptation: it retains standard softmax weighting and does not implement the paper's loosened spatial weights or a justified replacement for the class-token formulation. It has no completed faithfulness evaluation. Evidence: openvision-probe-results.json and openvision-attention-results/results.json.
+
+4. Earlier exploratory CLIP perturbation checks
+
+On one dog/car image and two prompts, original-model cosine scores were evaluated under salient-first, least-first and ten random patch orders, with 21 levels covering 0–100% of 196 patches. Mean replacement and Gaussian blur replacement were tested. Salient-first deletion beat all random controls in all four image/prompt/replacement combinations. Insertion beat 9/10 random controls for both mean-replacement cases, 10/10 for blur/dog, and 6/10 for blur/car. This variation warrants caution. The two runs contain 2,268 image evaluations of one unique image, not independent dataset samples.
+
+These custom raw-cosine patch AUCs differ from the Grad-ECLIP paper's ImageNet accuracy protocol and are not directly comparable with paper tables. No statistical significance or general faithfulness claim is made.
+
+5. Remaining work and requested feedback
+
+The immediate technical task is to derive a pooling-aware Grad-ECLIP adaptation and verify its score target and instrumented forward. The existing experimental map should remain separately labelled. Then evaluate adapted maps with controls on a larger recorded subset and compare against CLIP/appropriate baselines under an agreed protocol.
+
+Questions: Is original OpenVision Tiny/16-224 appropriate for the first adaptation before a larger model? Should the next milestone prioritize this adaptation and qualitative COCO cases, or aligning quantitative evaluation more closely with the Grad-ECLIP paper?
+
+These experiments do not establish full-paper reproduction, a validated OpenVision Grad-ECLIP adaptation, or dataset-scale benchmark performance.
+
+Sources and provenance
+Grad-ECLIP paper v3: https://arxiv.org/html/2502.18816v3
+Grad-ECLIP official source commit: e370e6cb194faf2020f5d1ed268f9d57e91a38e6, https://github.com/Cyang-Zhao/Grad-Eclip
+OpenVision source cloned at c3f7d96d89c0bde6cb9ae9dc707e68a753cb7d89: https://github.com/UCSC-VLAA/OpenVision
+Pinned model config: https://huggingface.co/UCSC-VLAA/openvision-vit-tiny-patch16-224/blob/7779317ba50238043f5d3ee0751fd95d7d13aa7e/open_clip_config.json
+Annotation: https://storage.googleapis.com/sfr-vision-language-research/datasets/coco_karpathy_val.json
+Salesforce annotation loader: https://github.com/salesforce/BLIP/blob/main/data/coco_karpathy_retrieval.py

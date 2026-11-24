@@ -1,0 +1,100 @@
+{
+  "revision": "7779317ba50238043f5d3ee0751fd95d7d13aa7e",
+  "weight_sha256": "e10d0e7f610976ce3f94b819230630b3be0364e0320012ae7cf909be529b596c",
+  "strict_load": "<All keys matched successfully>",
+  "open_clip_version": "4.2.2",
+  "scores": [
+    0.21428430080413818,
+    0.20065802335739136
+  ],
+  "image_shape": [
+    1,
+    192
+  ],
+  "text_shape": [
+    2,
+    192
+  ],
+  "input_gradients": [
+    {
+      "finite": true,
+      "l1": 7.888729572296143
+    },
+    {
+      "finite": true,
+      "l1": 7.158967018127441
+    }
+  ],
+  "config": {
+    "model_cfg": {
+      "embed_dim": 192,
+      "vision_cfg": {
+        "image_size": 224,
+        "layers": 12,
+        "width": 192,
+        "patch_size": 16,
+        "no_ln_pre": true,
+        "pool_type": "avg",
+        "final_ln_after_pool": true,
+        "norm_kwargs": {
+          "eps": 1e-06
+        },
+        "head_width": 64
+      },
+      "text_cfg": {
+        "context_length": 80,
+        "vocab_size": 32000,
+        "hf_tokenizer_name": "bert-base-uncased",
+        "tokenizer_kwargs": {
+          "strip_sep_token": true
+        },
+        "width": 192,
+        "heads": 3,
+        "layers": 12,
+        "pool_type": "last",
+        "no_causal_mask": true,
+        "act_kwargs": {
+          "approximate": "tanh"
+        },
+        "norm_kwargs": {
+          "eps": 1e-06
+        }
+      }
+    },
+    "preprocess_cfg": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "interpolation": "bilinear",
+      "resize_mode": "squash"
+    }
+  },
+  "attention_gradients": [
+    {
+      "shape": [
+        1,
+        197,
+        192
+      ],
+      "finite": true,
+      "l1": 6.364724159240723
+    },
+    {
+      "shape": [
+        1,
+        197,
+        192
+      ],
+      "finite": true,
+      "l1": 5.310487747192383
+    }
+  ],
+  "hook_score_difference_max": 0.0
+}

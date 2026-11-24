@@ -1,0 +1,20 @@
+{
+  "CLIP": [
+    {
+      "image_id": 340559,
+      "matched_caption": "There are two sinks next to two mirrors.",
+      "selected_caption": "A narrow kitchen filled with appliances and cooking utensils.",
+      "matched_score": 0.24690872430801392,
+      "selected_score": 0.2878901958465576
+    }
+  ],
+  "OpenVision": [
+    {
+      "image_id": 340559,
+      "matched_caption": "There are two sinks next to two mirrors.",
+      "selected_caption": "A narrow kitchen filled with appliances and cooking utensils.",
+      "matched_score": 0.23261500895023346,
+      "selected_score": 0.24501323699951172
+    }
+  ]
+}

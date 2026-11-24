@@ -1,0 +1,112 @@
+{
+  "annotation_source": "https://storage.googleapis.com/sfr-vision-language-research/datasets/coco_karpathy_val.json",
+  "annotation_sha256": "51f6dcf544cc0d3bd7086b1cd5aa3dcc9a26fcc718e623099027a902da06a848",
+  "selection": "first 8 entries in downloaded Karpathy validation annotation order; first caption per entry; no result-based selection",
+  "negative_rule": "caption from next selected image cyclically; source mismatch, not guaranteed semantically negative",
+  "images": [
+    {
+      "image_id": 184613,
+      "file": "COCO_val2014_000000184613.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000184613.jpg",
+      "sha256": "b829dedd2d88a9f75d279160b38ca0518e25468e0f7eac3ce0fb36945eeda580",
+      "captions": [
+        "A child holding a flowered umbrella and petting a yak.",
+        "A young man holding an umbrella next to a herd of cattle.",
+        "a young boy barefoot holding an umbrella touching the horn of a cow",
+        "A young boy with an umbrella who is touching the horn of a cow.",
+        "A boy holding an umbrella while standing next to livestock."
+      ]
+    },
+    {
+      "image_id": 403013,
+      "file": "COCO_val2014_000000403013.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000403013.jpg",
+      "sha256": "7e81ff4d04790729c339b1937f3610cf995bc850ea8dc84029612ba35e3a2394",
+      "captions": [
+        "A narrow kitchen filled with appliances and cooking utensils.",
+        "A galley kitchen with cabinets and appliances on both sides",
+        "A hallway leading into a white kitchen with appliances.",
+        "Doorway view of a kitchen with a sink, stove, refrigerator and pantry.",
+        "The pantry door of the small kitchen is closed."
+      ]
+    },
+    {
+      "image_id": 562150,
+      "file": "COCO_val2014_000000562150.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000562150.jpg",
+      "sha256": "8f4e42be91ae244a95ea6dffc3dcedce947abb3971c0a098f85dd8e82724ffbe",
+      "captions": [
+        "A little girl holding a kitten next to a blue fence.",
+        "Girl in a tank top holding a kitten in her back yard",
+        "A young girl is holding a small cat.",
+        "Girl with a yellow shirt holding a small cat",
+        "A girl smiles as she holds a kitty cat."
+      ]
+    },
+    {
+      "image_id": 360772,
+      "file": "COCO_val2014_000000360772.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000360772.jpg",
+      "sha256": "4e23ed50da550d5d7d3f215775e43cd4381a21f40601741fb333325e3384ccbe",
+      "captions": [
+        "A toilet sitting in a bathroom next to a sink.",
+        "A toilet in a bathroom with green faded paint.",
+        "A bathroom with a gouged wall and wall socket with no panel. ",
+        "The toilet is near the door in the bathroom.",
+        "The bathroom wall needs to be resurfaced and painted."
+      ]
+    },
+    {
+      "image_id": 340559,
+      "file": "COCO_val2014_000000340559.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000340559.jpg",
+      "sha256": "34e347d783186fb5c413429de196a80c4ea18a4202003728c978e7bc68367340",
+      "captions": [
+        "There are two sinks next to two mirrors.",
+        "Two very metallic sinks are shown as well as the mirrors above them.",
+        "A room with stainless steel equipment including sinks and mirrors.",
+        "Two stainless steel sinks with mirrors and a fire extinguisher. ",
+        "A photo of a bathroom made of steel."
+      ]
+    },
+    {
+      "image_id": 321107,
+      "file": "COCO_val2014_000000321107.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000321107.jpg",
+      "sha256": "7eca9f7df4cb95546c2536c92ed93e1e3a0c0f67a00b706938fe1803e87fc825",
+      "captions": [
+        "A woman rides a bicycle on a road next to the median.",
+        "A girl is riding her bike down the street.",
+        "A lady riding her bicycle on the side of a street.",
+        "A person on a bike riding on a street.",
+        "A woman riding a bike down a street next to a divider."
+      ]
+    },
+    {
+      "image_id": 129001,
+      "file": "COCO_val2014_000000129001.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000129001.jpg",
+      "sha256": "5ebd732356edaec7777986b5f8f6f2c5edb9a9380aea4e29c35ead8f77f01ef0",
+      "captions": [
+        "A bath tub sitting next to a sink in a bathroom.",
+        "The bathroom is clean and ready for us to use.",
+        "a bath tub sitting next to a sink ",
+        "A bathroom that has a shower curtain over a bathtub.",
+        "A bathroom with multicolored tile, bathtub and pedestal sink."
+      ]
+    },
+    {
+      "image_id": 556616,
+      "file": "COCO_val2014_000000556616.jpg",
+      "source_url": "http://images.cocodataset.org/val2014/COCO_val2014_000000556616.jpg",
+      "sha256": "d71e3d0008ca9052cc27b75b3bc9ab2f9f68deef1a9ee43281b70b31981d5ca0",
+      "captions": [
+        "A row of parked cars sitting next to parking meters.",
+        "A row of cars parked on a street with parking meters.",
+        "A series of parking meters and cars are located next to each other. ",
+        "A parking meter on a street by a car with traffic.",
+        "A parking meter on a street with cars"
+      ]
+    }
+  ]
+}

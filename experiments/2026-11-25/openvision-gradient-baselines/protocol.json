@@ -1,0 +1,31 @@
+{
+  "selection": "first 8 entries in downloaded Karpathy validation annotation order; first caption per entry; no result-based selection",
+  "token_grad_activation": "ReLU(sum_c grad(score, final_transformer_token[j,c])*token[j,c]), j>0; includes residual and MLP output before pooling",
+  "input_grad_activation": "ReLU(sum over channels,pixels of input * grad(score,input) within each 16x16 patch); input normalized by model mean/std",
+  "input_abs_gradient": "sum absolute input gradient over channels and pixels within each patch",
+  "candidate": "previous saved multi-query spatial weighting; no formula changes",
+  "replacements": {
+    "mean": "zero normalized image",
+    "blur": "torchvision Gaussian kernel51 sigma10 applied to normalized image; reflected padding"
+  },
+  "counts": [
+    0,
+    20,
+    39,
+    59,
+    78,
+    98,
+    118,
+    137,
+    157,
+    176,
+    196
+  ],
+  "random_seeds": [
+    0,
+    1,
+    2
+  ],
+  "target": "original OpenVision source-caption normalized cosine; raw trapezoidal AUC",
+  "purpose": "paired diagnostic, no tuning/benchmark claim"
+}

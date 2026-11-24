@@ -1,0 +1,29 @@
+{
+  "method": "experimental gradient-weighted attention/value source-token decomposition; NOT official Grad-ECLIP",
+  "formula": "ReLU(sum_h,i,c grad_z[h,i,c] * attention[h,i,j] * value[h,j,c]); discard source class token j=0",
+  "attention": "original 3 heads; final block only; gradients through full downstream average pooling/MLP/LayerNorm",
+  "score_difference_max": 2.9802322387695312e-08,
+  "qkv_shape": [
+    1,
+    3,
+    197,
+    64
+  ],
+  "results": [
+    {
+      "prompt": "dog",
+      "score": 0.21428433060646057,
+      "gradient_finite": true,
+      "nonzero_patches": 101,
+      "map_max": 0.00032142334384843707
+    },
+    {
+      "prompt": "car",
+      "score": 0.20065805315971375,
+      "gradient_finite": true,
+      "nonzero_patches": 111,
+      "map_max": 0.0002857903018593788
+    }
+  ],
+  "limitations": "local first-order intermediate attribution; not a complete input attribution or demonstrated faithfulness; no loosened spatial weighting or official class-token formula"
+}

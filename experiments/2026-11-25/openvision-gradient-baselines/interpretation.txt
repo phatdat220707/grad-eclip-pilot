@@ -1,0 +1,32 @@
+OpenVision gradient-baseline diagnostic — 25 November 2026
+
+Fixed experiment
+Same eight COCO images, same source captions, same original OpenVision Tiny checkpoint, same eleven perturbation fractions and three random seeds. No selection/tuning based on favorable outcomes. Compared final-token gradient times activation, input gradient times normalized input, input absolute-gradient magnitude, and the previously saved pooling-aware candidate. Repeated under mean and blur replacement. Exact formulas and preprocessing are in protocol.json; all raw curves are in results.json.
+
+Mean AUCs (deletion lower; insertion higher)
+Replacement / method | Deletion | Insertion
+Mean / token gradient x activation | 0.204239 | 0.241985
+Mean / input gradient x activation | 0.219458 | 0.234497
+Mean / input absolute gradient | 0.223663 | 0.224170
+Mean / prior pooling candidate | 0.227218 | 0.220368
+Mean / pooled random | 0.225499 | 0.228198
+Blur / token gradient x activation | 0.204396 | 0.239217
+Blur / input gradient x activation | 0.218627 | 0.230355
+Blur / input absolute gradient | 0.222194 | 0.224156
+Blur / prior pooling candidate | 0.227023 | 0.221088
+Blur / pooled random | 0.220905 | 0.224259
+
+Token gradient x activation beats the per-image mean of three random orders in 7/8 deletion cases and 8/8 insertion cases under each replacement rule. The prior candidate's mean-replacement AUCs reproduce exactly in the new evaluation. Full-image endpoints were checked within 1e-6. This run includes 2,464 image evaluations and took about 54.2 seconds excluding setup/loading. No confidence intervals or significance test are asserted.
+
+Interpretation
+The protocol can distinguish this simple token baseline from random on the small subset. This weakens an explanation based solely on an uninformative protocol for the prior candidate's poor results, but does not isolate a unique cause or validate the protocol generally. The direct Q/K/V spatial-weight extension underperforms a simpler baseline and should remain a negative candidate result.
+
+Pooling geometry check
+For final Transformer output patch tokens t_j and their mean p=(1/N)sum_j t_j, the remaining score has the form s=f(p). Thus ds/dt_j=(1/N) ds/dp for every patch. The output class token is excluded from this mean, so its derivative at that exact output is zero. On all eight images, class-token gradient L1 is exactly zero and maximum inter-patch gradient difference is zero; patch gradients are nonzero. These numerical observations match the pooling structure. This says nothing about class-token influence through earlier attention layers.
+
+The token baseline uses ReLU(sum_c grad(s,t_jc)*t_jc). It is a local intermediate-feature baseline, not an exact pixel attribution or proof of faithfulness. It includes output token activations after the final residual/MLP path, whereas the candidate assigns source-key attention/value contributions. Their difference may matter, but the current experiment does not uniquely prove the reason.
+
+Next work
+Use this baseline as a fixed reference when reviewing a pooling-aware Grad-ECLIP derivation. Obtain supervisor feedback before extensive method development. Any future adjusted candidate should be evaluated on separate held-out images rather than selecting a formula on these eight images and treating the same set as confirmation. COCO subset results remain exploratory; native-JAX parity, dataset benchmark reproduction and a validated Grad-ECLIP adaptation remain incomplete.
+
+Evidence: results.json, protocol.json, pooling_geometry.json, 24 raw maps. Scripts: ../openvision_gradient_baselines.py and ../openvision_pooling_geometry.py.

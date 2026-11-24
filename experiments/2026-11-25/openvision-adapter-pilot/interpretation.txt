@@ -1,0 +1,30 @@
+Pooling-aware candidate experiment — 25 November 2026
+
+Motivation and exact scope
+Official Grad-ECLIP notebook cell 9 uses gradient at the receiving class-token attention context, patch value features and min-max normalized cosine of class-query vs patch keys. The candidate replaces a single receiving class query with a sum over all receiving queries and retains the original three attention heads. The score gradient traverses the full remaining model, including the MLP and average pooling. This is a proposed engineering extension inspired by Grad-ECLIP, not a paper-established generalization or approved research method.
+
+For head h, receiving token i, source patch j and channel c:
+lambda[h,i,j] = minmax_j cosine(q[h,i],k[h,j]), over patch source keys only.
+H[j] = ReLU(sum_h,i,c grad(score,z[h,i,c]) * lambda[h,i,j] * v[h,j,c]).
+z is the original softmax attention context before output projection. The gradient is exact for that intermediate; replacing softmax A with lambda in the heat-map construction is heuristic. ReLU and source-token grouping do not imply completeness or input-level attribution. Residual paths and attention dependence on Q/K are not a complete input attribution in this formula.
+
+Implementation verification on eight COCO source captions
+- Explicit attention forward differs from unmodified forward by at most 2.98e-8 cosine.
+- Central finite-difference check perturbs context z by scale 1+-0.001; maximum absolute difference from sum(grad_z*z) is 2.28e-5. This tests the context directional derivative, not the validity of the heat-map rule.
+- Full-image endpoints match original scores within 1e-6 for all methods.
+
+Exploratory evaluation
+Eight fixed COCO images and first source captions; 196 patches; eleven rounded fractions covering 0–100%; mean-RGB replacement using this OpenVision config's ImageNet mean; raw original-model cosine; no extra fitting. Three random patch orders, ordinary softmax contribution control and no-spatial ablation. Candidate/control maps were computed before evaluation of their patch orders. Each perturbation sweep evaluates 11 images in each direction: 1,056 image evaluations total.
+
+Method | Mean deletion AUC (lower) | Mean insertion AUC (higher)
+Pooling candidate | 0.227218 | 0.220368
+Softmax control | 0.225928 | 0.222015
+No spatial weighting | 0.226576 | 0.223164
+Random pooled over 3 orders/image | 0.225499 | 0.228198
+
+The candidate is worse than pooled random on both means. It beats per-image random mean on 2/8 images for deletion and 2/8 for insertion. No superiority, significance or faithfulness claim is supported. These negative observations are preliminary because the subset is small/nonrandom, there are few random orders, tied heat values use stable ordering, and only one replacement scheme is used.
+
+Conclusion and next decision
+Basic score-preserving access and gradients are available, but this direct multi-query extension should not be reported as a successful explanatory adaptation. Next review the pooling-specific derivation and compare against a simple token-gradient baseline, then agree the intended adaptation with Chenyang before extensive sweeps. Keep this result as a documented failed/weak candidate rather than tuning and reporting only favorable cases on the same eight images.
+
+Evidence: protocol.json, results.json, 24 raw .npy maps; script ../openvision_pooling_adapter.py. Runtime approximately 24.7 seconds excluding setup/model loading.
